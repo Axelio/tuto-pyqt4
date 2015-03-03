@@ -5,7 +5,7 @@ import sys
 from PyQt4.QtGui import QWidget, QApplication, QIcon
 
 # import app
-import settings
+from settings import base as config
 
 
 class Ventana(QWidget):
@@ -23,10 +23,8 @@ class Ventana(QWidget):
         # 200 hacia abajo, 100 hacia la derecha
         self.move(200, 100)
 
-        logo = settings.STATIC + 'img/python.svg'
-
         # Cambiar icono
-        self.setWindowIcon(QIcon('%s' % logo))
+        self.setWindowIcon(QIcon('%s' % config.LOGO_APP))
 
 app = QApplication(sys.argv)
 ventana = Ventana()
