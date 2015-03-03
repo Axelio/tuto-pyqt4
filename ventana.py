@@ -2,7 +2,7 @@
 import sys
 
 # core pyqt
-from PyQt4.QtGui import QWidget, QApplication, QIcon
+from PyQt4.QtGui import QWidget, QApplication, QIcon, QPushButton, QLabel
 
 # import app
 from settings import base as config
@@ -25,6 +25,21 @@ class Ventana(QWidget):
 
         # Cambiar icono
         self.setWindowIcon(QIcon('%s' % config.LOGO_APP))
+
+        # Botones
+        boton = QPushButton('Boton 1', self)
+        boton2 = QPushButton('Boton 2', self)
+
+        # Posiciones
+        # Forma 1
+        boton2.move(300, 300)
+
+        # Dimensiones
+        boton.setGeometry(100, 200, 40, 70) # X, Y, Ancho, Alto
+
+        # Etiquetas
+        label = QLabel('<h1>Esto es una etiqueta</h1>', self)
+        label.move(300, 0)
 
 app = QApplication(sys.argv)
 ventana = Ventana()
