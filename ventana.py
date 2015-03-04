@@ -2,7 +2,8 @@
 import sys
 
 # core pyqt
-from PyQt4.QtGui import QWidget, QApplication, QIcon, QPushButton, QLabel
+from PyQt4.QtGui import (QWidget, QApplication, QIcon, QPushButton,
+    QLabel, QHBoxLayout)
 
 # import app
 from settings import base as config
@@ -40,6 +41,13 @@ class Ventana(QWidget):
         # Etiquetas
         label = QLabel('<h1>Esto es una etiqueta</h1>', self)
         label.move(300, 0)
+
+        # Layouts
+        layout_horizontal = QHBoxLayout(self)
+        layout_horizontal.addWidget(boton)
+        layout_horizontal.addWidget(boton2)
+        layout_horizontal.addWidget(label)
+        self.setLayout(layout_horizontal)
 
 app = QApplication(sys.argv)
 ventana = Ventana()
