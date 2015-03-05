@@ -26,8 +26,7 @@ class Signals(QWidget):
         # Titulo de la ventana
         self.setWindowTitle("Signals and Slots")
 
-        # Dimensione de la ventana
-        self.resize(1200, 600)
+        #self.resize(600, 600)
 
         # Mover posicion de la ventana
         # 200 hacia abajo, 100 hacia la derecha
@@ -36,16 +35,31 @@ class Signals(QWidget):
         # Cambiar icono
         self.setWindowIcon(QIcon('%s' % config.LOGO_APP))
 
-        boton = QPushButton("Saludar", self)
-        cerrar = QPushButton("Cerrar", self)
-        cerrar.move(0, 50)
+        #LAYOUT
+        vbox = QVBoxLayout(self)
+
+        self.boton = QPushButton("Saludar")
+        self.cerrar = QPushButton("Cerrar")
+        self.label = QLabel("")
+        self.label.hide() #Esconder el texto
 
         # Signal
-        boton.clicked.connect(self.saludar)
-        cerrar.clicked.connect(self.close)
+        self.boton.clicked.connect(self.saludar)
+        self.cerrar.clicked.connect(self.close)
+
+        vbox.addWidget(self.boton)
+        vbox.addWidget(self.cerrar)
+        vbox.addWidget(self.label)
+
+        self.setLayout(vbox)
 
     def saludar(self):
-        print "Hola mundo!"
+        self.label.setText("<h1>Hola mundo!</h1>")
+
+        if self.label.isHidden():
+            self.label.show()
+        else:
+            self.label.hide()
 
 app = QApplication(sys.argv)
 ventana = Signals()
