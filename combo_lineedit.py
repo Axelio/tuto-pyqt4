@@ -58,15 +58,10 @@ class Signals(QWidget):
         vbox.addLayout(hbox)
 
         # Conexion
-        self.combo.currentIndexChanged.connect(self.slot_1)
-        self.line.textChanged.connect(self.slot_2)
-
-    def slot_1(self):
-        self.labelCombo.setText(self.combo.currentText())
-
-    def slot_2(self):
-        self.labelLine.setText(self.line.text())
-
+        self.combo.currentIndexChanged.connect(
+            lambda: self.labelCombo.setText(self.combo.currentText()))
+        self.line.textChanged.connect(
+            lambda: self.labelLine.setText(self.line.text()))
 
 app = QApplication(sys.argv)
 ventana = Signals()
