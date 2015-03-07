@@ -9,10 +9,11 @@ Un Slot es una funcion o metodo en python
 
 # stdlib imports
 import sys
+from subprocess import Popen
 
 # core pyqt
 from PyQt4.QtGui import (QApplication, QIcon, QWidget, QComboBox, QPushButton,
-        QVBoxLayout, QHBoxLayout)
+        QVBoxLayout, QHBoxLayout, QMessageBox)
 
 # import app
 from settings import base as config
@@ -24,7 +25,7 @@ class Signals(QWidget):
         super(Signals, self).__init__()
 
         # Titulo de la ventana
-        self.setWindowTitle("Combobox y Line edit")
+        self.setWindowTitle("Combobox y Messages")
 
         #self.resize(600, 600)
 
@@ -57,6 +58,16 @@ class Signals(QWidget):
 
         vbox.addLayout(hbox)
 
+        # Conexion
+        self.boton.clicked.connect(self.run)
+
+    def run(self):
+        comando = str(self.combo.currentText())
+        try:
+            Popen(comando)
+        except:
+            QMessageBox.information(self, 'Error!',
+                '{0} no esta instalado'.format(comando))
 
 app = QApplication(sys.argv)
 ventana = Signals()
