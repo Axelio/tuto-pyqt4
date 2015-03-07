@@ -57,6 +57,9 @@ class Signals(QWidget):
 
         vbox.addLayout(hbox)
 
+        # Conexion
+        self.combo.currentIndexChanged.connect(self.slot_1)
+
     def slot_1(self):
         self.labelCombo.setText(self.combo.currentText())
 
