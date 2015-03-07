@@ -59,13 +59,13 @@ class Signals(QWidget):
 
         # Conexion
         self.combo.currentIndexChanged.connect(self.slot_1)
-        self.combo.textChanged.connect(self.slot_2)
+        self.line.textChanged.connect(self.slot_2)
 
     def slot_1(self):
         self.labelCombo.setText(self.combo.currentText())
 
     def slot_2(self):
-        self.labelLine.setText(self.combo.currentText())
+        self.labelLine.setText(self.line.text())
 
 
 app = QApplication(sys.argv)
