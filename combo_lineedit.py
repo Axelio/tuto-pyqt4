@@ -12,7 +12,7 @@ import sys
 
 # core pyqt
 from PyQt4.QtGui import (QApplication, QIcon, QWidget, QComboBox, QLineEdit,
-        QVBoxLayout)
+        QVBoxLayout, QHBoxLayout, QLabel)
 
 # import app
 from settings import base as config
@@ -37,12 +37,28 @@ class Signals(QWidget):
 
         # Widgets
         vbox = QVBoxLayout(self)
+        hbox = QHBoxLayout()
+
+        lista = ['Item 1', 'Item 2', 'Item 3']
 
         self.combo = QComboBox()
         self.line = QLineEdit()
+        self.labelCombo = QLabel('')
+        self.labelLine = QLabel('')
+
+        for item in lista:
+            self.combo.addItem(item)
 
         vbox.addWidget(self.combo)
         vbox.addWidget(self.line)
+
+        vbox.addWidget(self.labelCombo)
+        vbox.addWidget(self.labelLine)
+
+        vbox.addLayout(hbox)
+
+    def slot_1(self):
+        self.labelCombo.setText(self.combo.currentText())
 
 app = QApplication(sys.argv)
 ventana = Signals()
